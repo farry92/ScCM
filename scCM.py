@@ -115,10 +115,12 @@ def main_worker(args):
     }
      
     print("=> bulid loader...")    
+    # Create a training dataset using the bgi.loader.scRNAMatrixInstance class
     train_dataset = bgi.loader.scRNAMatrixInstance(
         adata=processed_adata,
         obs_label_colname=obs_label_colname,transform=True,
-        args_transformation=args_transformation)        
+        args_transformation=args_transformation)     
+    # Create an evaluation dataset using the same data but without transformations
     eval_dataset = bgi.loader.scRNAMatrixInstance(
         adata=processed_adata,
         obs_label_colname=obs_label_colname,transform=False)
@@ -126,9 +128,11 @@ def main_worker(args):
         args.batch_size = train_dataset.num_cells
     train_sampler = None
     eval_sampler = None        
+    # Create a DataLoader for the training dataset
     train_loader = torch.utils.data.DataLoader(
         train_dataset,batch_size=args.batch_size,shuffle=(train_sampler is None),
         num_workers=args.workers,pin_memory=True,sampler=train_sampler,drop_last=True)
+    # Create a DataLoader for the evaluation dataset with a larger batch size
     eval_loader = torch.utils.data.DataLoader(
         eval_dataset,batch_size=args.batch_size * 5,shuffle=False,
         sampler=eval_sampler,num_workers=args.workers,pin_memory=True)
@@ -236,7 +240,9 @@ def main_worker(args):
     total_time = time.time() - start # Add this line to calculate the total training time
     print(f"Total training time: {total_time:.2f} seconds") # Add this line to print the total training time
 
+# Define a training function that takes input arguments: train_loader, model, optimizer, scaler, epoch, and args
 def train(train_loader, model, optimizer, scaler, epoch, args):
+    # Initialize various meters for tracking training statistics
     batch_time = AverageMeter('Time', ':6.3f')
     data_time = AverageMeter('Data', ':6.3f')
     learning_rates = AverageMeter('LR', ':.4e') 
@@ -251,11 +257,13 @@ def train(train_loader, model, optimizer, scaler, epoch, args):
     iters_per_epoch = len(train_loader) 
     moco_m = args.moco_m               
     for i,(images, index, label)in enumerate(train_loader):
-        data_time.update(time.time() - end)         
+        data_time.update(time.time() - end)       
+        # Adjust learning rate based on the current epoch and iteration
         lr = adjust_learning_rate(optimizer, epoch + i / iters_per_epoch, args)
         learning_rates.update(lr)  
         if args.moco_m_cos:       
             moco_m = adjust_moco_momentum(epoch + i / iters_per_epoch, args) 
+        # Move data to the GPU for computation
         images[0] = images[0].cuda(args.gpu, non_blocking=True)
         images[1] = images[1].cuda(args.gpu, non_blocking=True)            
         with torch.cuda.amp.autocast(True): 
@@ -273,6 +281,7 @@ def train(train_loader, model, optimizer, scaler, epoch, args):
     print(f"Total training time: {total_time:.2f} seconds") # Add this line to print the total training time
     return unsupervised_metrics
 
+# Create a class called AverageMeter for computing and storing average and current values
 class AverageMeter(object):
     """Computes and stores the average and current value"""
     def __init__(self, name, fmt=':f'):
