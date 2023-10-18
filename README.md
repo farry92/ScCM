@@ -1,5 +1,6 @@
-# ScCM
+# scCM
 ### A contrastive learning model for analyzing large-scale CNS scRNA-seq data
+
 # Getting started
 ### Before diving into the powerful capabilities of ScCM, you need to prepare your scRNA-seq data. Follow these steps to get started:
 ## Download and Convert Data
