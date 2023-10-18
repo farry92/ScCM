@@ -43,3 +43,7 @@
 
 ### Combining Results with Original Data
 #### The trained visualization results can be combined with the original h5ad file's obsm (observation-specific features) for downstream analysis. This integration allows you to correlate the clustering results with the biological characteristics of your cells. With ScCM's capabilities, you can effectively analyze, visualize, and interpret large-scale CNS scRNA-seq data, providing valuable insights into the cellular composition and heterogeneity within CNS tissues. By following these steps, you can harness the full potential of ScCM in your research endeavors."
+
+## Contributing
+##### If you'd like to contribute, or have any suggestions for these guidelines, you can contact us at farry92@163.com.
+
