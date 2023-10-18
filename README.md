@@ -1,5 +1,6 @@
 # scCM
 ### A contrastive learning model for analyzing large-scale CNS scRNA-seq data
+#### scCM is constructed based on a momentum contrastive learning framework (MoCo v3 [1]) to learn informative representations of CNS scRNA-seq data. It comprises three modules: an encoder, a momentum encoder, and a predictor head, all constructed using fully connected neural networks. The encoder and momentum encoder receive a pair of gene expression vectors as input. Cells in the same type cluster together as closely as possible, while cells in different types separate as far as possible. After being trained, the embedding vectors produced by the Encoder can be regarded as representations of CNS cells that can be utilized for downstream tasks. 
 
 # Getting Started
 #### Before diving into the powerful capabilities of scCM, you need to prepare your scRNA-seq data. Follow these steps to get started:
@@ -19,7 +20,7 @@
  	ad.write("adat_anderson.h5ad")
 	
 # Basic Usage (details see the demo)
-#### 	Once your scRNA-seq data is ready in the h5ad format, you can utilize ScCM for comprehensive analysis. Below, we outline the basic usage of scCM, with additional details provided in the demo_Frounier section.
+#### Once your scRNA-seq data is ready in the h5ad format, you can utilize ScCM for comprehensive analysis. Below, we outline the basic usage of scCM, with additional details provided in the demo_Frounier section.
 
 	%run ScCM.py \
 	--input_h5ad_path={input_path} \
@@ -55,6 +56,10 @@
 
 ### Combining Results with Original Data
 #### The trained visualization results can be combined with the original h5ad file's obsm (observation-specific features) for downstream analysis. This integration allows you to correlate the clustering results with the biological characteristics of your cells. With ScCM's capabilities, you can effectively analyze, visualize, and interpret large-scale CNS scRNA-seq data, providing valuable insights into the cellular composition and heterogeneity within CNS tissues. By following these steps, you can harness the full potential of ScCM in your research endeavors."
+
+### References
+##### [1] Xinlei Chen, Saining Xie, He K. An Empirical Study of Training Self-Supervised Vision Transformers, arXiv preprint arXiv:2104.02057 2021
+
 
 ## Contributing
 ##### If you'd like to contribute, or have any suggestions for these guidelines, you can contact us at farry92@163.com.
