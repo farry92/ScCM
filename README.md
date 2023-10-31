@@ -21,7 +21,7 @@
 	
 ## 2. Basic Usage (details see the demo)
 #### Once your scRNA-seq data is ready in the h5ad format, you can utilize ScCM for comprehensive analysis. Below, we outline the basic usage of scCM, with additional details provided in the demo_Frounier section.
-### 2.1 Apple scCM
+### 2.1 Apply scCM
 
 	%run ScCM.py \
 	--input_h5ad_path={input_path} \
