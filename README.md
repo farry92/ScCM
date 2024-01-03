@@ -62,6 +62,4 @@
 ##### [1] Xinlei Chen, Saining Xie, He K. An Empirical Study of Training Self-Supervised Vision Transformers, arXiv preprint arXiv:2104.02057 2021
 
 
-## Contributing
-##### If you'd like to contribute, or have any suggestions for these guidelines, you can contact us at farry92@163.com.
 
