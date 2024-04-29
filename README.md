@@ -1,8 +1,7 @@
 # scCM
 ### A contrastive learning model for analyzing large-scale CNS scRNA-seq data
 #### scCM is constructed based on a momentum contrastive learning framework (MoCo v3 [1]) to learn informative representations of CNS scRNA-seq data. It comprises three modules: an encoder, a momentum encoder, and a predictor head, all constructed using fully connected neural networks. The encoder and momentum encoder receive a pair of gene expression vectors as input. Cells in the same type cluster together as closely as possible, while cells in different types separate as far as possible. After being trained, the embedding vectors produced by the Encoder can be regarded as representations of CNS cells that can be utilized for downstream tasks. 
-
-## dependent packages
+### Dependent packages
 #### anndata 0.10.6
 #### numpy 1.26.4
 #### pandas 2.2.1
@@ -10,7 +9,7 @@
 #### scanpy 1.9.8
 #### scikit-learn 1.4.1
 #### torch 2.2.1
-
+#
 ## 1. Getting Started
 #### Before diving into the powerful capabilities of scCM, you need to prepare your scRNA-seq data. Follow these steps to get started:
 ### 1.1 Download Data
